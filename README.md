@@ -26,6 +26,7 @@ chaos-kilz-club
 ### Prerequisites
 - Node.js (version 22 or higher)
 - [Bun](https://bun.sh/) (version 1.0 or higher)
+- [Nix](https://nixos.org/download.html) (optional, for reproducible development environments via `flake.nix`)
 
 ### Installation
 1. Clone the repository:
@@ -36,7 +37,13 @@ chaos-kilz-club
    ```
    cd chaos-kilz-club
    ```
-3. Install the dependencies:
+3. (Optional) Enter the Nix development shell:
+   ```
+   nix develop
+   ```
+   This will use `flake.nix` to provide all necessary dependencies.
+
+4. Install the dependencies:
    ```
    bun install
    ```
@@ -44,14 +51,14 @@ chaos-kilz-club
 ### Development
 To start the development server, run:
 ```
-bun run dev
+just dev
 ```
 The application will be available at `http://localhost:1234`.
 
 ### Building for Production
 To build the application for production, run:
 ```
-bun run build
+just build
 ```
 
 ### License
