@@ -1,0 +1,149 @@
+---
+const sister1ImageUrl = "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=400&h=400&facepad=2&q=80";
+const sister2ImageUrl = "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=facearea&w=400&h=400&facepad=2&q=80";
+const sistersBio = "Wir sind Daria und Aline – zwei echte Pferdemädchen, die das Landleben lieben, Tiere über alles stellen und auf Instagram immer auf der Suche nach dem nächsten Abenteuer sind.";
+---
+
+<section class="sisters-section">
+  <div class="section-container">
+    <hr class="separator-line" />
+
+    <p class="intro-text">
+      {sistersBio}
+    </p>
+
+    <div class="profiles-container">
+      <div class="profile-card">
+        <div class="profile-image-wrapper">
+          <img src={sister1ImageUrl} alt="Profilbild Daria" class="profile-image" />
+        </div>
+        <div class="profile-text">
+          <h3 class="profile-name">Daria</h3>
+          <p class="profile-description">
+            Pferde, Landluft und jede Menge Herz für Tiere – Daria fühlt sich draußen am wohlsten und teilt ihre liebsten Momente am liebsten mit ihren Followern.
+          </p>
+        </div>
+      </div>
+
+      <div class="profile-card">
+         <div class="profile-image-wrapper">
+          <img src={sister2ImageUrl} alt="Profilbild Aline" class="profile-image" />
+         </div>
+        <div class="profile-text">
+          <h3 class="profile-name">Aline</h3>
+          <p class="profile-description">
+            Ob Stall oder Selfie – Aline liebt das Landleben, Tiere und ist immer für einen Insta-Post zu haben. Gemeinsam mit Daria entdeckt sie die Welt auf vier Hufen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sisters-section {
+    padding: 4rem 0; /* Abstand oben/unten */
+    background-color: #FFFFFF; /* Weißer Hintergrund für diesen Abschnitt */
+  }
+
+  .section-container {
+    max-width: 1100px; /* Maximale Breite des Inhalts */
+    margin: 0 auto; /* Zentriert den Container */
+    padding: 0 2rem; /* Innenabstand links/rechts */
+  }
+
+  .separator-line {
+    border: none;
+    border-top: 1px solid #E0E0E0; /* Feine, helle Linie */
+    margin-bottom: 2.5rem; /* Abstand unter der Linie */
+    width: 80%; /* Nicht volle Breite */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .intro-text {
+    text-align: center; /* Zentrierter Text */
+    max-width: 700px; /* Begrenzte Breite für bessere Lesbarkeit */
+    margin: 0 auto 3.5rem auto; /* Zentriert und Abstand nach unten */
+    color: #555; /* Etwas dunkleres Grau */
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .profiles-container {
+    display: flex;
+    justify-content: space-around; /* Verteilt Platz um die Elemente */
+    gap: 3rem; /* Abstand zwischen den Profilkarten */
+    flex-wrap: wrap; /* Erlaubt Umbruch auf kleineren Schirmen */
+  }
+
+  .profile-card {
+    display: flex;
+    align-items: center; /* Vertikal zentrieren (Bild und Textblock) */
+    gap: 1.5rem; /* Abstand zwischen Bild und Text */
+    flex-basis: calc(50% - 2rem); /* Jede Karte nimmt ca. halbe Breite ein (abzgl. Gap) */
+    min-width: 300px; /* Mindestbreite bevor es umbricht */
+    flex-grow: 1; /* Erlaubt Karten zu wachsen, falls Platz */
+  }
+
+  .profile-image-wrapper {
+    flex-shrink: 0; /* Verhindert, dass der Bild-Wrapper schrumpft */
+  }
+
+  .profile-image {
+    width: 120px; /* Größe des Bildes */
+    height: 120px; /* Quadratisch machen */
+    border-radius: 50%; /* Macht das Bild rund */
+    object-fit: cover; /* Wichtig: Sorgt dafür, dass das Bild den Kreis ausfüllt, ohne verzerrt zu werden */
+    border: 4px solid var(--button-bg-color, #FADADD); /* Rand in der Button-Farbe (Fallback falls Variable nicht global definiert) */
+    display: block; /* Verhindert extra Platz unter dem Bild */
+  }
+
+  .profile-text {
+    flex-grow: 1; /* Text nimmt den restlichen Platz ein */
+  }
+
+  .profile-name {
+    font-family: var(--serif-font, Georgia, serif); /* Serif-Schrift für Namen */
+    font-size: 1.6rem; /* Größe der Überschrift */
+    margin-bottom: 0.75rem; /* Abstand unter der Überschrift */
+    font-weight: normal;
+    color: #333;
+  }
+
+  .profile-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  /* Responsive Anpassungen */
+  @media (max-width: 768px) {
+    .profiles-container {
+      flex-direction: column; /* Profile untereinander stapeln */
+      align-items: center; /* Zentriert die Karten im Container */
+      gap: 3rem; /* Beibehaltung des vertikalen Abstands */
+    }
+
+    .profile-card {
+      flex-basis: 100%; /* Karte nimmt volle Breite ein */
+      flex-direction: column; /* Bild über Text anordnen */
+      text-align: center; /* Text zentrieren */
+      max-width: 400px; /* Maximale Breite der Karte auf Mobile */
+    }
+
+    .profile-image {
+      width: 140px; /* Bild auf Mobile etwas größer? */
+      height: 140px;
+      margin-bottom: 1rem; /* Abstand zwischen Bild und Text */
+    }
+
+     .intro-text {
+        max-width: 90%;
+    }
+
+     .separator-line {
+        width: 90%;
+     }
+  }
+</style>

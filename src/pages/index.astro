@@ -1,0 +1,21 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro'; // Dein Basis-Layout
+import HomePageHeader from '../components/HomePageHeader.astro';
+import SisterProfileSection from '../components/SistersProfileSection.astro';
+// Importiere hier weitere Komponenten für den Rest der Seite
+---
+
+<Layout title="Two Sisters - Home">
+  <HomePageHeader />
+
+  <main>
+    {/* Hier kommt der Rest deiner Seite hin (z.B. die Sektion mit den runden Bildern) */}
+	<SisterProfileSection>
+    <section style="padding: 50px; text-align: center;">
+      <h2>Nächster Abschnitt hier...</h2>
+      <p>Hier kannst du die nächste Sektion (z.B. die "About Us"-Blöcke) einfügen.</p>
+    </section>
+  </main>
+
+</Layout>
