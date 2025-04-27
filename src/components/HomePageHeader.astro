@@ -20,7 +20,7 @@ const heroImageUrl = "https://images.unsplash.com/photo-1696866614151-5254858f60
   <nav class="main-navigation">
     <div class="nav-container">
       <div class="nav-left">
-        <a href="/" class="brand-logo">TWO SISTERS</a> {/* Einfaches Text-Logo */}
+        <a href="/" class="brand-logo">TWO SISTERS</a>
       </div>
       <div class="nav-center">
         <ul>
@@ -28,12 +28,6 @@ const heroImageUrl = "https://images.unsplash.com/photo-1696866614151-5254858f60
             <li><a href={link.href}>{link.name}</a></li>
           ))}
         </ul>
-      </div>
-      <div class="nav-right">
-        {/* Placeholder für Icons */}
-        <span>🔍</span> {/* Suche */}
-        <span>...</span> {/* Mehr */}
-        <span>👤</span> {/* Profil/Login */}
       </div>
     </div>
   </nav>
@@ -80,11 +74,21 @@ const heroImageUrl = "https://images.unsplash.com/photo-1696866614151-5254858f60
 
   .nav-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Navigation mittig ausrichten */
     align-items: center;
-    max-width: 1300px; /* Maximale Breite, zentriert */
-    margin: 0 auto; /* Zentriert Container */
+    max-width: 1300px;
+    margin: 0 auto;
+    gap: 2rem; /* Abstand zwischen Logo und Navigation */
   }
+  .nav-left {
+    margin-right: 2rem;
+  }
+  .nav-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  /* .nav-right entfernt */
 
   .nav-left .brand-logo {
     color: var(--nav-text-color);
@@ -114,13 +118,6 @@ const heroImageUrl = "https://images.unsplash.com/photo-1696866614151-5254858f60
 
   .nav-center ul li a:hover {
     color: var(--nav-link-hover-color);
-  }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem; /* Abstand zwischen Icons */
-    font-size: 1.1rem; /* Größe der Icon-Platzhalter */
   }
 
   /* Hero Sektion */
