@@ -1,0 +1,21 @@
+---
+import { getEntryBySlug } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+const { slug } = Astro.params;
+const post = await getEntryBySlug('blog', slug);
+if (!post) {
+  throw new Error('Blogpost nicht gefunden');
+}
+---
+
+<Layout title={`${post.data.title} | Blog`}>
+  <article>
+    <h1>{post.data.title}</h1>
+    <p><em>{post.data.pubDate.toLocaleDateString()} – {post.data.author}</em></p>
+    <p>{post.data.description}</p>
+    <div>
+      {post.body}
+    </div>
+  </article>
+  <a href="/blog">Zurück zum Blog</a>
+</Layout>
