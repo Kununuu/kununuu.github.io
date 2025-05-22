@@ -1,0 +1,33 @@
+module.exports = {
+  content: [
+    './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'nav-bg': '#28282B',
+        'nav-text': '#EAEAEA', 
+        'nav-hover': '#FFFFFF',
+      },
+      fontFamily: {
+        serif: ["Georgia", "'Times New Roman'", "Times", "serif"],
+        sans: [
+          "-apple-system", 
+          "BlinkMacSystemFont", 
+          "'Segoe UI'", 
+          "Roboto", 
+          "Oxygen", 
+          "Ubuntu", 
+          "Cantarell", 
+          "'Open Sans'", 
+          "'Helvetica Neue'", 
+          "sans-serif"
+        ]
+      },
+      spacing: {
+        'nav-gap': '2rem',
+        'nav-link-gap': '2.5rem'
+      }
+    }
+  }
+}

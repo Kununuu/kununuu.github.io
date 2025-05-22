@@ -14,134 +14,23 @@ const navLinks = [
 
 ---
 
-<header class="site-header">
-  <nav class="main-navigation">
-    <div class="nav-container">
-      <div class="nav-left">
-        <a href="/" class="brand-logo">TWO SISTERS</a>
+<header>
+  <nav class="bg-nav-bg text-nav-text px-8 py-2 border-b border-gray-700">
+    <div class="flex justify-center items-center max-w-[1300px] mx-auto gap-8">
+      <div class="mr-8">
+        <a href="/" class="text-nav-text no-underline font-bold font-sans text-lg">TWO SISTERS</a>
       </div>
-      <div class="nav-center">
-        <ul>
+      <div class="flex-1 flex justify-center">
+        <ul class="list-none p-0 m-0 flex gap-10">
           {navLinks.map(link => (
-            <li><a href={link.href}>{link.name}</a></li>
+            <li>
+              <a href={link.href} class="text-nav-text no-underline font-sans text-xs uppercase tracking-wider hover:text-nav-hover transition-colors duration-200">
+                {link.name}
+              </a>
+            </li>
           ))}
         </ul>
       </div>
     </div>
   </nav>
 </header>
-
-<style>
-  /* Globale Styles (könnten auch in einer globalen CSS-Datei sein) */
-  :root {
-    --nav-bg-color: #28282B; /* Dunkles Grau, ähnlich Mockup */
-    --nav-text-color: #EAEAEA;
-    --nav-link-hover-color: #FFFFFF;
-    --serif-font: Georgia, 'Times New Roman', Times, serif;
-    --sans-serif-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-
-  .site-header {
-     /* Kein Margin unten, da Hero direkt anschließt */
-  }
-
-  /* Navigation */
-  .main-navigation {
-    background-color: var(--nav-bg-color);
-    color: var(--nav-text-color);
-    padding: 0.8rem 2rem; /* Etwas Padding oben/unten und seitlich */
-    border-bottom: 1px solid #444; /* Leichte Trennlinie */
-  }
-
-  .nav-container {
-    display: flex;
-    justify-content: center; /* Navigation mittig ausrichten */
-    align-items: center;
-    max-width: 1300px;
-    margin: 0 auto;
-    gap: 2rem; /* Abstand zwischen Logo und Navigation */
-  }
-  .nav-left {
-    margin-right: 2rem;
-  }
-  .nav-center {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-  }
-  /* .nav-right entfernt */
-
-  .nav-left .brand-logo {
-    color: var(--nav-text-color);
-    text-decoration: none;
-    font-weight: bold;
-    font-family: var(--sans-serif-font);
-    font-size: 1.1rem;
-  }
-
-  .nav-center ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 2.5rem; /* Abstand zwischen Links */
-  }
-
-  .nav-center ul li a {
-    color: var(--nav-text-color);
-    text-decoration: none;
-    font-family: var(--sans-serif-font);
-    font-size: 0.8rem; /* Kleinere Schrift */
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: color 0.2s ease;
-  }
-
-  .nav-center ul li a:hover {
-    color: var(--nav-link-hover-color);
-  }
-
-
-  /* Responsive Anpassungen (Beispiel) */
-  @media (max-width: 900px) {
-    .nav-center {
-      display: none; /* Menü für Mobile ausblenden (braucht Burger-Menü Logik) */
-    }
-     .main-headline {
-        font-size: 3rem;
-    }
-    .hero-content {
-        margin-left: 0;
-        text-align: center; /* Text zentrieren auf Mobile */
-        max-width: 100%;
-    }
-     .sub-headline {
-        max-width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-  }
-   @media (max-width: 600px) {
-     .main-navigation {
-       padding: 0.8rem 1rem;
-     }
-     .nav-right {
-       gap: 1rem;
-     }
-     .hero-section {
-       min-height: 60vh;
-       padding: 2rem 1rem;
-     }
-      .main-headline {
-        font-size: 2.5rem;
-    }
-     .sub-headline {
-        font-size: 0.9rem;
-     }
-     .cta-button {
-        padding: 0.8rem 2rem;
-        font-size: 0.8rem;
-     }
-   }
-
-</style>
