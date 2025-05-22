@@ -1,5 +1,6 @@
 ---
 // src/layouts/Layout.astro
+import Footer from '../components/Footer.astro';
 
 // Nimmt den Seitentitel als 'prop' entgegen
 interface Props {
@@ -66,7 +67,7 @@ const { title } = Astro.props;
 </head>
 <body>
 	<slot /> {/* Hier wird der Inhalt der Seite (z.B. aus index.astro) eingefügt */}
-
+	<Footer />
   {/* Hier könntest du globale Skripte einfügen, die am Ende des Bodys geladen werden sollen */}
 </body>
 </html>
