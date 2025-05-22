@@ -1,0 +1,185 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HomePageHeader from '../../components/HomePageHeader.astro';
+
+export async function getStaticPaths() {
+  const recommendations = [
+    {
+      slug: "pferde-coaching",
+      title: "Pferde-Coaching",
+      author: "Daria & Aline",
+      date: "16. Mai 2025",
+      category: "Coaching",
+      duration: "2h 30m",
+      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=900&h=400&facepad=2&q=80",
+      description: "Unser Lieblingskurs für mehr Harmonie mit deinem Pferd. In diesem Kurs lernst du, wie du und dein Pferd ein echtes Team werdet – mit viel Herz, Geduld und Spaß.",
+    },
+    {
+      slug: "landliebe-workshop",
+      title: "Landliebe-Workshop",
+      author: "Daria & Aline",
+      date: "10. Mai 2025",
+      category: "Workshop",
+      duration: "1 Tag",
+      image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=facearea&w=900&h=400&facepad=2&q=80",
+      description: "Entdecke das Landleben mit Daria & Aline.",
+    },
+    {
+      slug: "buchtipp-abenteuer-stall",
+      title: "Buchtipp: Abenteuer Stall",
+      author: "Daria & Aline",
+      date: "5. Mai 2025",
+      category: "Buchtipp",
+      duration: "ca. 300 Seiten",
+      image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=900&q=80",
+      description: "Unser Lesetipp für Pferdefans.",
+    }
+  ];
+
+  return recommendations.map(rec => ({
+    params: { slug: rec.slug },
+    props: { recommendation: rec }
+  }));
+}
+
+const { recommendation } = Astro.props;
+---
+
+<Layout title={`Empfehlung – ${recommendation.title}`}>
+  <HomePageHeader />
+
+  <div class="recommendation-detail-header">
+    <nav class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/empfehlungen">Empfehlungen</a>
+      <span>/</span>
+      <span>{recommendation.title}</span>
+    </nav>
+    <h1 class="recommendation-detail-title">{recommendation.title}</h1>
+    <div class="recommendation-meta">
+      <span class="meta-item">
+        <svg width="18" height="18" fill="none" stroke="#9C7B6B" stroke-width="1.5" style="vertical-align:middle;margin-right:0.3em"><circle cx="9" cy="6" r="3"/><path d="M2 16c0-3.3 3.1-6 7-6s7 2.7 7 6"/></svg>
+        {recommendation.author}
+      </span>
+      <span class="meta-item">
+        <svg width="18" height="18" fill="none" stroke="#9C7B6B" stroke-width="1.5" style="vertical-align:middle;margin-right:0.3em"><rect x="2.5" y="3.5" width="13" height="12" rx="2"/><path d="M6 1.5v4"/><path d="M12 1.5v4"/></svg>
+        {recommendation.date}
+      </span>
+      <span class="meta-item">
+        <svg width="18" height="18" fill="none" stroke="#9C7B6B" stroke-width="1.5" style="vertical-align:middle;margin-right:0.3em"><rect x="3" y="4" width="12" height="10" rx="2"/><path d="M7 2v4"/><path d="M11 2v4"/></svg>
+        {recommendation.category}
+      </span>
+      <span class="meta-item">
+        <svg width="18" height="18" fill="none" stroke="#9C7B6B" stroke-width="1.5" style="vertical-align:middle;margin-right:0.3em"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l2.5 2.5"/></svg>
+        {recommendation.duration}
+      </span>
+    </div>
+  </div>
+
+  <div class="recommendation-image-wrapper">
+    <img src={recommendation.image} alt={recommendation.title} class="recommendation-detail-image" />
+  </div>
+
+  <div class="recommendation-detail-content">
+    <p>{recommendation.description}</p>
+    <!-- Hier kannst du weitere Inhalte, Abschnitte oder Call-to-Actions ergänzen -->
+  </div>
+</Layout>
+
+<style>
+  :root {
+    --headline-font: var(--serif-font, Georgia, serif);
+    --body-font: var(--sans-serif-font, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif);
+    --primary-color: #28282B;
+    --accent-color: #FADADD;
+    --subtitle-color: #9C7B6B;
+    --text-color: #333;
+  }
+
+  .recommendation-detail-header {
+    max-width: 900px;
+    margin: 3rem auto 2.5rem auto;
+    padding: 0 2rem;
+    text-align: left;
+  }
+  .breadcrumb {
+    font-size: 0.98rem;
+    color: #888;
+    margin-bottom: 1.2rem;
+    font-family: var(--body-font);
+  }
+  .breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  .breadcrumb span {
+    margin: 0 0.3em;
+  }
+  .recommendation-detail-title {
+    font-family: var(--headline-font);
+    font-size: 2.7rem;
+    color: var(--primary-color);
+    margin: 0 0 1.2rem 0;
+    font-weight: normal;
+  }
+  .recommendation-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-family: var(--body-font);
+    color: var(--subtitle-color);
+    font-size: 1.08rem;
+    margin-bottom: 0.5rem;
+  }
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+  }
+
+  .recommendation-image-wrapper {
+    max-width: 1100px;
+    margin: 0 auto 2.5rem auto;
+    padding: 0 2rem;
+  }
+  .recommendation-detail-image {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    max-height: 350px;
+    background: #eee;
+    display: block;
+  }
+
+  .recommendation-detail-content {
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+    padding: 0 2rem;
+    font-family: var(--body-font);
+    color: #444;
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 700px) {
+    .recommendation-detail-header {
+      margin-top: 2rem;
+      padding: 0 1rem;
+    }
+    .recommendation-detail-title {
+      font-size: 1.6rem;
+    }
+    .recommendation-image-wrapper {
+      padding: 0 1rem;
+    }
+    .recommendation-detail-content {
+      padding: 0 1rem;
+      font-size: 1rem;
+    }
+    .recommendation-meta {
+      gap: 1rem;
+      font-size: 0.98rem;
+    }
+  }
+</style>

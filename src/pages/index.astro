@@ -1,13 +1,27 @@
 ---
 // src/pages/index.astro
-import Layout from '../layouts/Layout.astro'; // Dein Basis-Layout
+import Layout from '../layouts/Layout.astro';
 import HomePageHeader from '../components/HomePageHeader.astro';
 import SisterProfileSection from '../components/SistersProfileSection.astro';
-// Importiere hier weitere Komponenten für den Rest der Seite
+
+const heroImageUrl = "https://images.unsplash.com/photo-1696866614151-5254858f603f?q=80&w=3271&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 ---
 
 <Layout title="Two Sisters - Home">
   <HomePageHeader />
+
+  <section class="hero-section">
+    <div class="hero-content">
+      <p class="pre-headline">HEY THERE!</p>
+      <h1 class="main-headline">Daria & Aline,<br />zwei Schwestern – ein Abenteuer</h1>
+      <p class="sub-headline">
+        Zwei Pferdemädchen, die das Landleben lieben, Tiere über alles stellen und ihre Abenteuer auf Instagram teilen. Begleite Daria und Aline auf ihrem Weg zwischen Stall, Selfies und jeder Menge Herz!
+      </p>
+      <a href="#more-info" class="cta-button">
+        MEHR ERFAHREN
+      </a>
+    </div>
+  </section>
 
   <main>
     {/* Hier kommt der Rest deiner Seite hin (z.B. die Sektion mit den runden Bildern) */}
@@ -19,3 +33,110 @@ import SisterProfileSection from '../components/SistersProfileSection.astro';
   </main>
 
 </Layout>
+
+<style define:vars={{ heroImageUrl: `url(${heroImageUrl})` }}>
+  :root {
+    --hero-text-color: #FFFFFF;
+    --button-bg-color: #FADADD;
+    --button-text-color: #333333;
+    --button-hover-bg-color: #F8C8CD;
+    --serif-font: Georgia, 'Times New Roman', Times, serif;
+    --sans-serif-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .hero-section {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--heroImageUrl);
+    background-size: cover;
+    background-position: center center;
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    padding: 4rem 2rem;
+    color: var(--hero-text-color);
+  }
+
+  .hero-content {
+    max-width: 600px;
+    margin-left: 5%;
+  }
+
+  .pre-headline {
+    font-family: var(--sans-serif-font);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .main-headline {
+    font-family: var(--serif-font);
+    font-size: 4.5rem;
+    font-weight: normal;
+    line-height: 1.1;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .sub-headline {
+    font-family: var(--sans-serif-font);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 90%;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: var(--sans-serif-font);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .cta-button:hover {
+    background-color: var(--button-hover-bg-color);
+  }
+
+  @media (max-width: 900px) {
+    .main-headline {
+      font-size: 3rem;
+    }
+    .hero-content {
+      margin-left: 0;
+      text-align: center;
+      max-width: 100%;
+    }
+    .sub-headline {
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero-section {
+      min-height: 60vh;
+      padding: 2rem 1rem;
+    }
+    .main-headline {
+      font-size: 2.5rem;
+    }
+    .sub-headline {
+      font-size: 0.9rem;
+    }
+    .cta-button {
+      padding: 0.8rem 2rem;
+      font-size: 0.8rem;
+    }
+  }
+</style>
