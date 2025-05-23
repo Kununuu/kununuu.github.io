@@ -1,6 +1,7 @@
 # Development tasks
 dev:
-    npm run dev
+    open http://localhost:4321/
+    npm run dev 
 
 # Build the project
 build:
