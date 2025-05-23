@@ -8,7 +8,6 @@ build:
 
 # Clean build artifacts
 clean:
-    npm run clean
     rm -rf dist .astro
 
 # Install dependencies
