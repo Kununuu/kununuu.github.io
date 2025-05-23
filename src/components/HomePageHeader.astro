@@ -14,21 +14,23 @@ const navLinks = [
 ---
 
 <header>
-  <nav class="bg-nav-bg text-nav-text px-8 py-2 border-b border-gray-700">
-    <div class="flex justify-center items-center max-w-[1300px] mx-auto gap-8">
-      <div class="mr-8">
-        <a href="/" class="text-nav-text no-underline font-bold font-sans text-lg">TWO SISTERS</a>
-      </div>
-      <div class="flex-1 flex justify-center">
-        <ul class="list-none p-0 m-0 flex gap-10">
-          {navLinks.map(link => (
-            <li>
-              <a href={link.href} class="text-nav-text no-underline font-sans text-xs uppercase tracking-wider hover:text-nav-hover transition-colors duration-200">
-                {link.name}
-              </a>
-            </li>
-          ))}
-        </ul>
+  <nav class="bg-nav-bg text-nav-text border-b border-gray-700">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex justify-between items-center gap-8">
+        <div>
+          <a href="/" class="text-nav-text no-underline font-bold font-sans text-lg">TWO SISTERS</a>
+        </div>
+        <div class="flex justify-center">
+          <ul class="list-none p-0 m-0 flex gap-10">
+            {navLinks.map(link => (
+              <li>
+                <a href={link.href} class="text-nav-text no-underline font-sans text-xs uppercase tracking-wider hover:text-nav-hover transition-colors duration-200">
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   </nav>

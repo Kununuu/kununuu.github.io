@@ -104,11 +104,24 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
   }
 
   .recommendation-detail-header {
-    max-width: 900px;
+    max-width: 6xl;
     margin: 3rem auto 2.5rem auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
     text-align: left;
   }
+
+  @media (min-width: 640px) {
+    .recommendation-detail-header {
+      padding: 0 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .recommendation-detail-header {
+      padding: 0 2rem;
+    }
+  }
+
   .breadcrumb {
     font-size: 0.98rem;
     color: #888;
@@ -145,10 +158,23 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
   }
 
   .recommendation-image-wrapper {
-    max-width: 1100px;
+    max-width: 6xl;
     margin: 0 auto 2.5rem auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
+
+  @media (min-width: 640px) {
+    .recommendation-image-wrapper {
+      padding: 0 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .recommendation-image-wrapper {
+      padding: 0 2rem;
+    }
+  }
+
   .recommendation-detail-image {
     width: 100%;
     border-radius: 12px;
@@ -159,13 +185,25 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
   }
 
   .recommendation-detail-content {
-    max-width: 800px;
+    max-width: 4xl;
     margin: 0 auto 4rem auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
     font-family: var(--body-font);
     color: #444;
     font-size: 1.15rem;
     line-height: 1.7;
+  }
+
+  @media (min-width: 640px) {
+    .recommendation-detail-content {
+      padding: 0 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .recommendation-detail-content {
+      padding: 0 2rem;
+    }
   }
 
   .prose {
