@@ -1,26 +1,176 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import HomePageHeader from '../components/HomePageHeader.astro';
+
 const posts = (await getCollection('abenteuer')).filter(post => !post.data.draft);
 ---
 
-<Layout title="Abenteuer | Chaos Kilz Club">
-  <h1>Abenteuer</h1>
+<Layout title="Two Sisters - Abenteuer">
+  <HomePageHeader />
+
+  <div class="recommendations-header">
+    <nav class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <span>Abenteuer</span>
+    </nav>
+    <h1 class="recommendations-title">Abenteuer</h1>
+    <div class="recommendations-subtitle">UNSERE GESCHICHTEN & ERLEBNISSE</div>
+  </div>
+
+  <div class="recommendations-controls">
+    <span>Zeige 1–{posts.length} von {posts.length} Ergebnissen</span>
+    <div class="sorting">
+      <label for="sort-select" class="sr-only">Sortierung</label>
+      <select id="sort-select">
+        <option>Neueste zuerst</option>
+      </select>
+    </div>
+  </div>
+
   {posts.length === 0 ? (
-    <p>Es sind noch keine Abenteuer-Posts vorhanden.</p>
+    <p class="text-center my-8">Es sind noch keine Abenteuer-Posts vorhanden.</p>
   ) : (
-    <ul style="max-width: 700px; margin: 2rem auto; padding: 0; list-style: none;">
+    <div class="recommendations-grid">
       {posts.map((post: CollectionEntry<'abenteuer'>) => (
-        <li style="margin-bottom: 2.5rem; border-bottom: 1px solid #eee; padding-bottom: 2rem;">
-          <a href={"/abenteuer/" + post.slug} style="font-size: 1.4rem; font-weight: bold; color: #28282B; text-decoration: none;">
-            {post.data.title}
+        <div class="recommendation-card">
+          <a href={"/abenteuer/" + post.slug} class="card-link">
+            {post.data.image && (
+              <img 
+                src={post.data.image} 
+                alt={post.data.title}
+                class="card-image"
+              />
+            )}
+            <div class="card-content">
+              <h2 class="card-title">{post.data.title}</h2>
+              <p class="card-meta">{post.data.pubDate.toLocaleDateString()} {post.data.author ? `– ${post.data.author}` : ''}</p>
+              <p class="card-description">{post.data.description}</p>
+            </div>
           </a>
-          <div style="color: #888; font-size: 0.95rem; margin: 0.2rem 0 0.7rem 0;">
-            {post.data.pubDate.toLocaleDateString()} {post.data.author ? `– ${post.data.author}` : ''}
-          </div>
-          <p style="margin: 0 0 0.7rem 0; color: #444;">{post.data.description}</p>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   )}
+
+  <style>
+    .recommendations-header {
+      text-align: center;
+      padding: 4rem 1rem;
+      background-color: #f9fafb;
+    }
+
+    .breadcrumb {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+    }
+
+    .breadcrumb a {
+      color: #6b7280;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: #111827;
+    }
+
+    .recommendations-title {
+      font-size: 2.25rem;
+      font-weight: bold;
+      color: #111827;
+      margin-bottom: 0.5rem;
+    }
+
+    .recommendations-subtitle {
+      color: #6b7280;
+      letter-spacing: 0.1em;
+    }
+
+    .recommendations-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      margin: 2rem auto;
+      max-width: 1200px;
+    }
+
+    .recommendations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .recommendation-card {
+      background: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .recommendation-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #111827;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-meta {
+      font-size: 0.875rem;
+      color: #6b7280;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-description {
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    select {
+      padding: 0.5rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.375rem;
+      background-color: white;
+      color: #374151;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+  </style>
 </Layout>
