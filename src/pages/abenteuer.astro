@@ -1,18 +1,18 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-const posts = (await getCollection('blog')).filter(post => !post.data.draft);
+const posts = (await getCollection('abenteuer')).filter(post => !post.data.draft);
 ---
 
-<Layout title="Blog | Chaos Kilz Club">
-  <h1>Blog</h1>
+<Layout title="Abenteuer | Chaos Kilz Club">
+  <h1>Abenteuer</h1>
   {posts.length === 0 ? (
-    <p>Es sind noch keine Blogposts vorhanden.</p>
+    <p>Es sind noch keine Abenteuer-Posts vorhanden.</p>
   ) : (
     <ul style="max-width: 700px; margin: 2rem auto; padding: 0; list-style: none;">
-      {posts.map((post: CollectionEntry<'blog'>) => (
+      {posts.map((post: CollectionEntry<'abenteuer'>) => (
         <li style="margin-bottom: 2.5rem; border-bottom: 1px solid #eee; padding-bottom: 2rem;">
-          <a href={"/blog/" + post.slug} style="font-size: 1.4rem; font-weight: bold; color: #28282B; text-decoration: none;">
+          <a href={"/abenteuer/" + post.slug} style="font-size: 1.4rem; font-weight: bold; color: #28282B; text-decoration: none;">
             {post.data.title}
           </a>
           <div style="color: #888; font-size: 0.95rem; margin: 0.2rem 0 0.7rem 0;">

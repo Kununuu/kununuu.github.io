@@ -2,13 +2,13 @@
 import { getEntryBySlug } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 const { slug } = Astro.params;
-const post = await getEntryBySlug('blog', slug);
+const post = await getEntryBySlug('abenteuer', slug);
 if (!post) {
-  throw new Error('Blogpost nicht gefunden');
+  throw new Error('Abenteuer-Post nicht gefunden');
 }
 ---
 
-<Layout title={`${post.data.title} | Blog`}>
+<Layout title={`${post.data.title} | Abenteuer`}>
   <article>
     <h1>{post.data.title}</h1>
     <p><em>{post.data.pubDate.toLocaleDateString()} – {post.data.author}</em></p>
@@ -17,5 +17,5 @@ if (!post) {
       {post.body}
     </div>
   </article>
-  <a href="/blog">Zurück zum Blog</a>
+  <a href="/abenteuer">Zurück zu den Abenteuern</a>
 </Layout>
