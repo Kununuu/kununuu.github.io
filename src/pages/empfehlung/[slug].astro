@@ -63,7 +63,7 @@ const { recommendation } = Astro.props;
         {recommendation.author}
       </span>
       <span class="meta-item">
-        <svg width="18" height="18" fill="none" stroke="#9C7B6B" stroke-width="1.5" style="vertical-align:middle;margin-right:0.3em"><rect x="2.5" y="3.5" width="13" height="12" rx="2"/><path d="M6 1.5v4"/><path d="M12 1.5v4"/></svg>
+        <svg width="18" height="18" fill="none" stroke="#9C7B6L" stroke-width="1.5" style="vertical-align:middle;margin-right:0.3em"><rect x="2.5" y="3.5" width="13" height="12" rx="2"/><path d="M6 1.5v4"/><path d="M12 1.5v4"/></svg>
         {recommendation.date}
       </span>
       <span class="meta-item">
@@ -109,10 +109,21 @@ const { recommendation } = Astro.props;
     --text-color: #333;
   }
 
+  .recommendation-detail-header,
+  .recommendation-image-wrapper,
+  .recommendation-detail-content {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .recommendation-detail-header {
-    max-width: 6xl;
+    max-width: 720px;
     margin: 3rem auto 2.5rem auto;
-    padding: 0 1rem sm:0 1.5rem lg:0 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     text-align: left;
   }
   .breadcrumb {
@@ -128,6 +139,65 @@ const { recommendation } = Astro.props;
   .breadcrumb span {
     margin: 0 0.3em;
   }
+  @media (min-width: 640px) {
+    .recommendation-detail-header,
+    .recommendation-image-wrapper,
+    .recommendation-detail-content {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .recommendation-detail-header,
+    .recommendation-image-wrapper,
+    .recommendation-detail-content {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .recommendation-image-wrapper {
+    max-width: 720px;
+    margin: 0 auto 2.5rem auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .recommendation-detail-content {
+    max-width: 720px;
+    margin: 0 auto 4rem auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-family: var(--body-font);
+    color: #444;
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 700px) {
+    .recommendation-detail-header {
+      margin-top: 2rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .recommendation-detail-title {
+      font-size: 1.6rem;
+    }
+    .recommendation-image-wrapper {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .recommendation-detail-content {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      font-size: 1rem;
+    }
+    .recommendation-meta {
+      gap: 1rem;
+      font-size: 0.98rem;
+    }
+  }
+
   .recommendation-detail-title {
     font-family: var(--headline-font);
     font-size: 2.7rem;
@@ -150,11 +220,6 @@ const { recommendation } = Astro.props;
     gap: 0.2em;
   }
 
-  .recommendation-image-wrapper {
-    max-width: 6xl;
-    margin: 0 auto 2.5rem auto;
-    padding: 0 1rem sm:0 1.5rem lg:0 2rem;
-  }
   .recommendation-detail-image {
     width: 100%;
     border-radius: 12px;
@@ -162,36 +227,5 @@ const { recommendation } = Astro.props;
     max-height: 350px;
     background: #eee;
     display: block;
-  }
-
-  .recommendation-detail-content {
-    max-width: 4xl;
-    margin: 0 auto 4rem auto;
-    padding: 0 1rem sm:0 1.5rem lg:0 2rem;
-    font-family: var(--body-font);
-    color: #444;
-    font-size: 1.15rem;
-    line-height: 1.7;
-  }
-
-  @media (max-width: 700px) {
-    .recommendation-detail-header {
-      margin-top: 2rem;
-      padding: 0 1rem;
-    }
-    .recommendation-detail-title {
-      font-size: 1.6rem;
-    }
-    .recommendation-image-wrapper {
-      padding: 0 1rem;
-    }
-    .recommendation-detail-content {
-      padding: 0 1rem;
-      font-size: 1rem;
-    }
-    .recommendation-meta {
-      gap: 1rem;
-      font-size: 0.98rem;
-    }
   }
 </style>
