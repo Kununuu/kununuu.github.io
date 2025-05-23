@@ -1,21 +1,262 @@
 ---
-import { getEntryBySlug } from 'astro:content';
+import { getCollection, getEntryBySlug } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-const { slug } = Astro.params;
-const post = await getEntryBySlug('abenteuer', slug);
+import HomePageHeader from '../../components/HomePageHeader.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('abenteuer');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
 if (!post) {
   throw new Error('Abenteuer-Post nicht gefunden');
 }
+
+// Render the post content
+const { Content } = await post.render();
+
+// Format reading time (assuming average reading speed of 200 words per minute)
+const wordCount = post.body.split(/\s+/).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 ---
 
-<Layout title={`${post.data.title} | Abenteuer`}>
-  <article>
-    <h1>{post.data.title}</h1>
-    <p><em>{post.data.pubDate.toLocaleDateString()} – {post.data.author}</em></p>
-    <p>{post.data.description}</p>
-    <div>
-      {post.body}
+<Layout title={`${post.data.title} | Two Sisters`}>
+  <HomePageHeader />
+
+  <div class="recommendation-detail-header">
+    <nav class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/abenteuer">Abenteuer</a>
+      <span>/</span>
+      <span>{post.data.title}</span>
+    </nav>
+    <h1 class="recommendation-detail-title">{post.data.title}</h1>
+    <div class="recommendation-meta">
+      <span class="meta-item">
+        <svg width="18" height="18" fill="none" stroke="#9C7B6B" stroke-width="1.5" style="vertical-align:middle;margin-right:0.3em"><circle cx="9" cy="6" r="3"/><path d="M2 16c0-3.3 3.1-6 7-6s7 2.7 7 6"/></svg>
+        {post.data.author || "Two Sisters"}
+      </span>
+      <span class="meta-item">
+        <svg width="18" height="18" fill="none" stroke="#9C7B6B" stroke-width="1.5" style="vertical-align:middle;margin-right:0.3em"><rect x="2.5" y="3.5" width="13" height="12" rx="2"/><path d="M6 1.5v4"/><path d="M12 1.5v4"/></svg>
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+      </span>
+      {post.data.category && (
+        <span class="meta-item">
+          <svg width="18" height="18" fill="none" stroke="#9C7B6B" stroke-width="1.5" style="vertical-align:middle;margin-right:0.3em"><rect x="3" y="4" width="12" height="10" rx="2"/><path d="M7 2v4"/><path d="M11 2v4"/></svg>
+          <span>{post.data.category}</span>
+        </span>
+      )}
+      <span class="meta-item">
+        <svg width="18" height="18" fill="none" stroke="#9C7B6B" stroke-width="1.5" style="vertical-align:middle;margin-right:0.3em"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l2.5 2.5"/></svg>
+        <span>{readingTime} Min. Lesezeit</span>
+      </span>
     </div>
-  </article>
-  <a href="/abenteuer">Zurück zu den Abenteuern</a>
+  </div>
+
+  {post.data.image && (
+    <div class="recommendation-image-wrapper">
+      <img 
+        src={post.data.image} 
+        alt={post.data.title}
+        class="recommendation-detail-image"
+      />
+    </div>
+  )}
+
+  <div class="recommendation-detail-content">
+    <div class="text-lg text-gray-600 mb-8 leading-relaxed">
+      {post.data.description}
+    </div>
+
+    <div class="prose prose-lg max-w-none">
+      <Content />
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-gray-200">
+      <a 
+        href="/abenteuer" 
+        class="inline-flex items-center text-subtitle-color hover:text-primary-color transition-colors duration-200"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/>
+        </svg>
+        Zurück zu allen Abenteuern
+      </a>
+    </div>
+  </div>
 </Layout>
+
+<style>
+  :root {
+    --headline-font: var(--serif-font, Georgia, serif);
+    --body-font: var(--sans-serif-font, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif);
+    --primary-color: #28282B;
+    --accent-color: #FADADD;
+    --subtitle-color: #9C7B6B;
+    --text-color: #333;
+  }
+
+  .recommendation-detail-header {
+    max-width: 900px;
+    margin: 3rem auto 2.5rem auto;
+    padding: 0 2rem;
+    text-align: left;
+  }
+  .breadcrumb {
+    font-size: 0.98rem;
+    color: #888;
+    margin-bottom: 1.2rem;
+    font-family: var(--body-font);
+  }
+  .breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  .breadcrumb span {
+    margin: 0 0.3em;
+  }
+  .recommendation-detail-title {
+    font-family: var(--headline-font);
+    font-size: 2.7rem;
+    color: var(--primary-color);
+    margin: 0 0 1.2rem 0;
+    font-weight: normal;
+  }
+  .recommendation-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-family: var(--body-font);
+    color: var(--subtitle-color);
+    font-size: 1.08rem;
+    margin-bottom: 0.5rem;
+  }
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+  }
+
+  .recommendation-image-wrapper {
+    max-width: 1100px;
+    margin: 0 auto 2.5rem auto;
+    padding: 0 2rem;
+  }
+  .recommendation-detail-image {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    max-height: 350px;
+    background: #eee;
+    display: block;
+  }
+
+  .recommendation-detail-content {
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+    padding: 0 2rem;
+    font-family: var(--body-font);
+    color: #444;
+    font-size: 1.15rem;
+    line-height: 1.7;
+  }
+
+  .prose {
+    max-width: none;
+  }
+
+  .prose h2 {
+    font-family: var(--headline-font);
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+  }
+
+  .prose h3 {
+    font-family: var(--headline-font);
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: normal;
+  }
+
+  .prose p {
+    color: #444;
+    margin-bottom: 1.2rem;
+    line-height: 1.7;
+  }
+
+  .prose ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1.2rem;
+    color: #444;
+  }
+
+  .prose ol {
+    list-style-type: decimal;
+    margin-left: 1.5rem;
+    margin-bottom: 1.2rem;
+    color: #444;
+  }
+
+  .prose a {
+    color: var(--subtitle-color);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .prose a:hover {
+    color: var(--primary-color);
+  }
+
+  @media (max-width: 700px) {
+    .recommendation-detail-header {
+      margin-top: 2rem;
+      padding: 0 1rem;
+    }
+    .recommendation-detail-title {
+      font-size: 1.6rem;
+    }
+    .recommendation-image-wrapper {
+      padding: 0 1rem;
+    }
+    .recommendation-detail-content {
+      padding: 0 1rem;
+      font-size: 1rem;
+    }
+    .recommendation-meta {
+      gap: 1rem;
+      font-size: 0.98rem;
+    }
+  }
+</style>
+
+<!-- Add schema.org JSON-LD for SEO -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "datePublished": post.data.pubDate.toISOString(),
+  "dateModified": post.data.pubDate.toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": post.data.author || "Two Sisters"
+  },
+  "description": post.data.description,
+  "image": post.data.image,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": new URL(Astro.url.pathname, Astro.site).href
+  }
+})} />

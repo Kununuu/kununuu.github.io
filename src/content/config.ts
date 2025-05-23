@@ -1,4 +1,4 @@
-import { z, defineCollection, reference } from 'astro:content';
+import { z, defineCollection } from 'astro:content';
 
 const abenteuerCollection = defineCollection({
   type: 'content',
@@ -8,6 +8,7 @@ const abenteuerCollection = defineCollection({
     pubDate: z.coerce.date(),
     author: z.string().optional(),
     image: z.string().optional(),
+    category: z.string().optional(),
     draft: z.boolean().optional(),
   }),
 });
