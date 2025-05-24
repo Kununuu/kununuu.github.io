@@ -45,3 +45,8 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Project Styling
+The styling is based on this template: https://templatesjungle.com/demo/?url=https://demo.templatesjungle.com/emily/&purl=https://templatesjungle.gumroad.com/l/emily-life-coach-and-writer-html-website-template
+
+Further styling was generated with Bing Image Generator
