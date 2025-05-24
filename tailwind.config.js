@@ -8,6 +8,10 @@ module.exports = {
         'nav-bg': '#28282B',
         'nav-text': '#EAEAEA', 
         'nav-hover': '#FFFFFF',
+        'primary': '#FADADD',
+        'secondary': '#333333',
+        'hover': '#F8C8CD',
+        'text-primary': '#FFFFFF',
       },
       fontFamily: {
         serif: ["Georgia", "'Times New Roman'", "Times", "serif"],

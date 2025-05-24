@@ -31,201 +31,38 @@ const recommendations = [
 <Layout title="Two Sisters - Empfehlungen">
   <HomePageHeader />
 
-  <div class="recommendations-header">
-    <nav class="breadcrumb">
-      <a href="/">Home</a>
-      <span>/</span>
-      <span>Empfehlungen</span>
-    </nav>
-    <h1 class="recommendations-title">Empfehlungen</h1>
-    <div class="recommendations-subtitle">UNSERE PERSÖNLICHEN FAVORITEN</div>
-  </div>
+  <div class="content-container mx-auto px-8">
+    <div class="text-center mt-12 mb-8">
+      <nav class="text-sm text-gray-500 mb-5 font-sans">
+        <a href="/" class="text-[#28282B] no-underline">Home</a>
+        <span class="mx-1">/</span>
+        <span>Empfehlungen</span>
+      </nav>
+      <h1 class="font-serif text-3xl text-[#9C7B6B] m-0 font-normal">Empfehlungen</h1>
+      <div class="font-sans text-[#9C7B6B] text-sm tracking-widest mt-2 mb-6 uppercase">UNSERE PERSÖNLICHEN FAVORITEN</div>
+    </div>
 
-  <div class="recommendations-controls">
-    <span>Zeige 1–{recommendations.length} von {recommendations.length} Ergebnissen</span>
-    <div class="sorting">
-      <label for="sort-select" class="sr-only">Sortierung</label>
-      <select id="sort-select">
-        <option>Standard Sortierung</option>
-      </select>
+    <div class="flex justify-between items-center max-w-5xl mx-auto mb-10 text-gray-700 text-base font-sans">
+      <span>Zeige 1–{recommendations.length} von {recommendations.length} Ergebnissen</span>
+      <div class="relative">
+        <label for="sort-select" class="sr-only">Sortierung</label>
+        <select id="sort-select" class="border border-gray-300 rounded px-2 py-1 bg-white text-gray-800">
+          <option>Standard Sortierung</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-5xl mx-auto" style="justify-content: space-between;">
+      {recommendations.map(rec => (
+        <div class="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col overflow-hidden">
+          <img src={rec.image} alt={rec.title} class="w-full h-56 object-cover bg-gray-200" />
+          <div class="p-6 flex flex-col justify-end flex-grow">
+            <h2 class="font-serif text-lg text-[#28282B] mb-2 font-normal">{rec.title}</h2>
+            <p class="font-sans text-gray-700 text-base mb-4">{rec.description}</p>
+            <a href={`/empfehlung/${rec.slug}`} class="self-start bg-[#FADADD] text-[#333] no-underline px-4 py-2 rounded-full font-sans text-sm font-bold tracking-wide transition-colors hover:bg-[#F8C8CD]">Mehr erfahren</a>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
-
-  <div class="recommendations-grid">
-    {recommendations.map(rec => (
-      <div class="recommendation-card">
-        <img src={rec.image} alt={rec.title} class="recommendation-image" />
-        <div class="recommendation-info">
-          <h2 class="recommendation-card-title">{rec.title}</h2>
-          <p class="recommendation-description">{rec.description}</p>
-          <a href={`/empfehlung/${rec.slug}`} class="recommendation-link">Mehr erfahren</a>
-        </div>
-      </div>
-    ))}
-  </div>
 </Layout>
-
-<style>
-  :root {
-    --headline-font: var(--serif-font, Georgia, serif);
-    --body-font: var(--sans-serif-font, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif);
-    --primary-color: #28282B;
-    --accent-color: #FADADD;
-    --text-color: #333;
-    --subtitle-color: #9C7B6B;
-    --card-bg: #fff;
-    --card-border: #eee;
-  }
-
-  .recommendations-header {
-    text-align: center;
-    margin-top: 3rem;
-    margin-bottom: 2rem;
-  }
-  .breadcrumb {
-    font-size: 0.95rem;
-    color: #888;
-    margin-bottom: 1.2rem;
-    font-family: var(--body-font);
-  }
-  .breadcrumb a {
-    color: var(--primary-color);
-    text-decoration: none;
-  }
-  .breadcrumb span {
-    margin: 0 0.3em;
-  }
-  .recommendations-title {
-    font-family: var(--headline-font);
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin: 0;
-    font-weight: normal;
-  }
-  .recommendations-subtitle {
-    font-family: var(--body-font);
-    color: var(--subtitle-color);
-    font-size: 1.1rem;
-    letter-spacing: 0.15em;
-    margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-  }
-
-  .recommendations-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1100px;
-    margin: 0 auto 2.5rem auto;
-    padding: 0 2rem;
-    font-family: var(--body-font);
-    color: #555;
-    font-size: 1rem;
-  }
-  .sorting select {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 0.3em 1em 0.3em 0.5em;
-    font-family: var(--body-font);
-    font-size: 1rem;
-    background: #fff;
-    color: #333;
-  }
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0;
-  }
-
-  .recommendations-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
-    max-width: 1100px;
-    margin: 0 auto 4rem auto;
-    padding: 0 2rem;
-  }
-  .recommendation-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(40,40,43,0.04);
-    display: flex;
-    flex-direction: column;
-    transition: box-shadow 0.2s;
-  }
-  .recommendation-card:hover {
-    box-shadow: 0 4px 16px rgba(40,40,43,0.10);
-  }
-  .recommendation-image {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    background: #eee;
-  }
-  .recommendation-info {
-    padding: 1.5rem 1.2rem 1.2rem 1.2rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-  .recommendation-card-title {
-    font-family: var(--headline-font);
-    font-size: 1.4rem;
-    margin: 0 0 0.7rem 0;
-    color: var(--primary-color);
-    font-weight: normal;
-  }
-  .recommendation-description {
-    font-family: var(--body-font);
-    color: #555;
-    font-size: 1rem;
-    margin-bottom: 1.2rem;
-  }
-  .recommendation-link {
-    align-self: flex-start;
-    background: var(--accent-color);
-    color: var(--text-color);
-    text-decoration: none;
-    padding: 0.6em 1.5em;
-    border-radius: 50px;
-    font-family: var(--body-font);
-    font-size: 0.95rem;
-    font-weight: bold;
-    letter-spacing: 0.04em;
-    transition: background 0.2s;
-  }
-  .recommendation-link:hover {
-    background: #F8C8CD;
-  }
-
-  @media (max-width: 700px) {
-    .recommendations-title {
-      font-size: 2.1rem;
-    }
-    .recommendations-header {
-      margin-top: 2rem;
-      margin-bottom: 1.2rem;
-    }
-    .recommendations-controls {
-      flex-direction: column;
-      gap: 1rem;
-      padding: 0 1rem;
-    }
-    .recommendations-grid {
-      gap: 1.2rem;
-      padding: 0 1rem;
-    }
-    .recommendation-image {
-      height: 160px;
-    }
-  }
-</style>
