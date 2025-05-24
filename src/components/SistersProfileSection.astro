@@ -11,13 +11,13 @@ const sistersBio = "Wir sind Daria und Aline – zwei echte Pferdemädchen, die 
       {sistersBio}
     </p>
 
-    <div class="flex flex-wrap justify-center gap-12">
-      <div class="flex items-center gap-6 min-w-[300px] flex-1 basis-[calc(50%-3rem)]">
+    <div class="flex flex-col md:flex-row justify-center gap-12 items-center md:items-start">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-6 min-w-[300px] max-w-[400px] md:max-w-none flex-1 basis-[calc(50%-3rem)] text-center md:text-left">
         <div class="flex-shrink-0">
           <img 
             src={sister1ImageUrl} 
             alt="Profilbild Daria" 
-            class="w-32 h-32 rounded-full object-cover border-4 border-pink-200 block" 
+            class="w-[140px] h-[140px] md:w-32 md:h-32 rounded-full object-cover border-4 border-pink-200 block mb-4 md:mb-0" 
           />
         </div>
         <div class="flex-grow">
@@ -28,12 +28,12 @@ const sistersBio = "Wir sind Daria und Aline – zwei echte Pferdemädchen, die 
         </div>
       </div>
 
-      <div class="flex items-center gap-6 min-w-[300px] flex-1 basis-[calc(50%-3rem)]">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-6 min-w-[300px] max-w-[400px] md:max-w-none flex-1 basis-[calc(50%-3rem)] text-center md:text-left">
         <div class="flex-shrink-0">
           <img 
             src={sister2ImageUrl} 
             alt="Profilbild Aline" 
-            class="w-32 h-32 rounded-full object-cover border-4 border-pink-200 block" 
+            class="w-[140px] h-[140px] md:w-32 md:h-32 rounded-full object-cover border-4 border-pink-200 block mb-4 md:mb-0" 
           />
         </div>
         <div class="flex-grow">
@@ -47,23 +47,4 @@ const sistersBio = "Wir sind Daria und Aline – zwei echte Pferdemädchen, die 
   </div>
 </section>
 
-<!-- Mobile responsive classes -->
-<style>
-  @media (max-width: 768px) {
-    .flex-wrap {
-      flex-direction: column;
-      align-items: center;
-      gap: 12;
-    }
-    .flex-wrap > div {
-      flex-direction: column;
-      text-align: center;
-      max-width: 400px;
-    }
-    .flex-wrap img {
-      width: 140px;
-      height: 140px;
-      margin-bottom: 1rem;
-    }
-  }
-</style>
+
