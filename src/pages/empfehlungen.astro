@@ -1,31 +1,10 @@
 ---
 // src/pages/empfehlungen.astro
+import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import HomePageHeader from '../components/HomePageHeader.astro';
 
-const recommendations = [
-  {
-    slug: "pferde-coaching",
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=400&h=400&facepad=2&q=80",
-    title: "Pferde-Coaching",
-    description: "Unser Lieblingskurs für mehr Harmonie mit deinem Pferd.",
-    link: "#"
-  },
-  {
-    slug: "landliebe-workshop",
-    image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=facearea&w=400&h=400&facepad=2&q=80",
-    title: "Landliebe-Workshop",
-    description: "Entdecke das Landleben mit Daria & Aline.",
-    link: "#"
-  },
-  {
-    slug: "buchtipp-abenteuer-stall",
-    image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
-    title: "Buchtipp: Abenteuer Stall",
-    description: "Unser Lesetipp für Pferdefans.",
-    link: "#"
-  }
-];
+const recommendations = (await getCollection('empfehlungen')).filter(rec => !rec.data.draft);
 ---
 
 <Layout title="Two Sisters - Empfehlungen">
@@ -53,12 +32,18 @@ const recommendations = [
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-5xl mx-auto" style="justify-content: space-between;">
-      {recommendations.map(rec => (
+      {recommendations.map((rec: CollectionEntry<'empfehlungen'>) => (
         <div class="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-          <img src={rec.image} alt={rec.title} class="w-full h-56 object-cover bg-gray-200" />
+          {rec.data.image && (
+            <img 
+              src={rec.data.image} 
+              alt={rec.data.title}
+              class="w-full h-56 object-cover bg-gray-200"
+            />
+          )}
           <div class="p-6 flex flex-col justify-end flex-grow">
-            <h2 class="font-serif text-lg text-[#28282B] mb-2 font-normal">{rec.title}</h2>
-            <p class="font-sans text-gray-700 text-base mb-4">{rec.description}</p>
+            <h2 class="font-serif text-lg text-[#28282B] mb-2 font-normal">{rec.data.title}</h2>
+            <p class="font-sans text-gray-700 text-base mb-4">{rec.data.description}</p>
             <a href={`/empfehlung/${rec.slug}`} class="self-start bg-[#FADADD] text-[#333] no-underline px-4 py-2 rounded-full font-sans text-sm font-bold tracking-wide transition-colors hover:bg-[#F8C8CD]">Mehr erfahren</a>
           </div>
         </div>
