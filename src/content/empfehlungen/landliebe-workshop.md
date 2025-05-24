@@ -2,7 +2,7 @@
 title: "Landliebe-Workshop"
 description: "Entdecke das Landleben mit Daria & Aline. Ein Workshop voller Inspiration für alle, die das einfache Leben auf dem Land lieben."
 pubDate: 2025-05-10
-author: "Daria & Aline"
+author: "Aline"
 image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=facearea&w=900&h=400&facepad=2&q=80"
 category: "Workshop"
 duration: "1 Tag"

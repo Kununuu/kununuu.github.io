@@ -28,12 +28,28 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 200));
   <HomePageHeader />
 
   <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 my-12 sm:my-10">
-    <nav class="flex items-center text-sm text-gray-600 mb-5">
-      <a href="/" class="text-gray-900 hover:text-gray-600">Home</a>
-      <span class="mx-1">/</span>
-      <a href="/abenteuer" class="text-gray-900 hover:text-gray-600">Abenteuer</a>
-      <span class="mx-1">/</span>
-      <span>{post.data.title}</span>
+    <nav aria-label="Breadcrumb" class="mb-5">
+      <ol class="flex items-center space-x-1 text-sm text-gray-600">
+        <li>
+          <a href="/" class="text-gray-900 hover:text-gray-600">Home</a>
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+          </svg>
+        </li>
+        <li>
+          <a href="/abenteuer" class="text-gray-900 hover:text-gray-600">Abenteuer</a>
+        </li>
+        <li>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+          </svg>
+        </li>
+        <li>
+          <span class="text-gray-500" aria-current="page">{post.data.title}</span>
+        </li>
+      </ol>
     </nav>
     <h1 class="font-serif text-4xl sm:text-5xl text-gray-900 mb-5">{post.data.title}</h1>
     <div class="flex flex-wrap gap-6 text-[#9C7B6B] text-base">

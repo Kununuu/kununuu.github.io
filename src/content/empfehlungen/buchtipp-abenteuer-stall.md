@@ -2,7 +2,7 @@
 title: "Buchtipp: Abenteuer Stall"
 description: "Unser Lesetipp für Pferdefans. Eine Geschichte voller Abenteuer, Freundschaft und der besonderen Magie zwischen Mensch und Pferd."
 pubDate: 2025-05-05
-author: "Daria & Aline"
+author: "Aline"
 image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=900&q=80"
 category: "Buchtipp"
 duration: "ca. 300 Seiten"

@@ -2,7 +2,7 @@
 title: "Willkommen im Chaos Kilz Club Blog!"
 description: "Das ist der erste Blogpost. Bald folgen mehr Inhalte!"
 pubDate: 2025-05-22
-author: "Admin"
+author: "Aline"
 image: "/favicon.svg"
 draft: false
 ---

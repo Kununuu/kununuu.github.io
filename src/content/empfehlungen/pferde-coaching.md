@@ -2,7 +2,7 @@
 title: "Pferde-Coaching"
 description: "Unser Lieblingskurs für mehr Harmonie mit deinem Pferd. In diesem Kurs lernst du, wie du und dein Pferd ein echtes Team werdet – mit viel Herz, Geduld und Spaß."
 pubDate: 2025-05-16
-author: "Daria & Aline"
+author: "Aline"
 image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=900&h=400&facepad=2&q=80"
 category: "Coaching"
 duration: "2h 30m"
