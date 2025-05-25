@@ -7,7 +7,11 @@ import HomePageHeader from '../components/HomePageHeader.astro';
 const recommendations = (await getCollection('empfehlungen')).filter(rec => !rec.data.draft);
 ---
 
-<Layout title="Two Sisters - Empfehlungen">
+<Layout
+  title="Two Sisters - Empfehlungen"
+  description="Unsere persönlichen Favoriten in Sachen Abenteuer und Entdeckung"
+  type="website"
+>
   <HomePageHeader />
 
   <div class="content-container mx-auto px-8 mb-16">

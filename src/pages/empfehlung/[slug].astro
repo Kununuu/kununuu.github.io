@@ -24,7 +24,12 @@ const wordCount = recommendation.body.split(/\s+/).length;
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 ---
 
-<Layout title={`Empfehlung – ${recommendation.data.title}`}>
+<Layout  
+  title={`Empfehlung – ${recommendation.data.title}`}  
+  description={recommendation.data.description}  
+  image={recommendation.data.image}  
+  type="article"  
+>  
   <HomePageHeader />
 
   <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 my-12 sm:my-10">

@@ -1,0 +1,6 @@
+# robots.txt für Chaos Kilz Club
+User-agent: *
+Allow: /
+
+# Verweis auf automatisch generierte Sitemap
+Sitemap: https://kununuu.github.io/sitemap.xml

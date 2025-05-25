@@ -1,12 +1,16 @@
 ---
 // src/layouts/Layout.astro
 import Footer from '../components/Footer.astro';
+import SEO from '../components/SEO.astro';
 
-// Nimmt den Seitentitel als 'prop' entgegen
+// Nimmt Titel, Description, Image und Typ als 'props' entgegen
 interface Props {
-	title: string;
+  title: string;
+  description?: string;
+  image?: string;
+  type?: string;
 }
-const { title } = Astro.props;
+const { title, description, image, type } = Astro.props;
 
 // Hier könntest du globale Daten laden oder Skripte importieren
 ---
@@ -19,7 +23,8 @@ const { title } = Astro.props;
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" /> {/* Platzhalter für Favicon */}
 	<meta name="generator" content={Astro.generator} />
 
-	<title>{title}</title> {/* Setzt den Seitentitel aus der Prop */}
+	{/* Zentrale SEO-Metadaten */}
+	<SEO title={title} description={description} image={image} type={type} />
 
   {/* Hier könntest du globale Stylesheets oder Webfonts laden */}
   <style is:global>

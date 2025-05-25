@@ -6,7 +6,11 @@ import HomePageHeader from '../components/HomePageHeader.astro';
 const posts = (await getCollection('abenteuer')).filter(post => !post.data.draft);
 ---
 
-<Layout title="Two Sisters - Abenteuer">
+<Layout
+  title="Two Sisters - Abenteuer"
+  description="Unsere Geschichten & Erlebnisse rund um Abenteuer auf dem Land"
+  type="website"
+>
   <HomePageHeader />
 
   <div class="content-container mx-auto px-8 mb-16">
